@@ -43,7 +43,7 @@ const StudentList: React.FC<StudentListProps> = ({ onRandomize }) => {
         className='w-full px-2 text-black font-bold py-2'
       ></textarea>
       <button
-        className='bg-blue-900 font-bold px-2 h-10 text-center rounded-lg w-full mt-2 text-white'
+        className='bg-gray-500 font-bold px-2 h-10 text-center rounded-lg w-full mt-2 text-white'
         onClick={handleRandomize}
       >
         Randomize
