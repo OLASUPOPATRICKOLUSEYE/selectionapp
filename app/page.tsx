@@ -16,9 +16,17 @@ const Home: React.FC = () => {
   const handleRandomize = (groups: Group[]) => {
     setRandomizedGroups(groups);
 
+    // Format the data for Excel
+    const excelData = groups.reduce((acc: any[], group) => {
+      group.students.forEach((student) => {
+        acc.push({ Supervisor: group.supervisor, Student: student });
+      });
+      return acc;
+    }, []);
+
     // Create Excel workbook
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(groups), 'Randomized Students');
+    XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(excelData), 'Randomized Students');
 
     // Save the workbook as an Excel file
     XLSX.writeFile(workbook, 'randomized_students.xlsx');
