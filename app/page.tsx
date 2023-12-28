@@ -1,3 +1,4 @@
+// Home.tsx
 "use client";
 // Import necessary modules and components
 import React, { useState } from 'react';
@@ -5,8 +6,9 @@ import StudentList from "./components/studentList/StudentList";
 import Groups from "./components/groups/Groups";
 import * as XLSX from 'xlsx';
 
+
 interface Group {
-  supervisor: string;
+  groupNumber: number;
   students: string[];
 }
 
@@ -19,7 +21,7 @@ const Home: React.FC = () => {
     // Format the data for Excel
     const excelData = groups.reduce((acc: any[], group) => {
       group.students.forEach((student) => {
-        acc.push({ Supervisor: group.supervisor, Student: student });
+        acc.push({ GroupNumber: group.groupNumber, Student: student });
       });
       return acc;
     }, []);
@@ -42,7 +44,7 @@ const Home: React.FC = () => {
             <StudentList onRandomize={handleRandomize} />
           </div>
           <div>
-            <h2 className="text-xl font-bold mb-2 text-white">Randomized Groups</h2>
+            <h2 className="text-xl bg-gray-800 rounded-md p-2 font-bold mb-2 text-white">Randomized Groups</h2>
             <Groups groups={randomizedGroups} />
           </div>
         </div>
